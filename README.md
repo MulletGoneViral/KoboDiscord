@@ -8,6 +8,8 @@ A small webserver that reads and writes discord messages using Python Flask and 
 - Only supports as many DM's as can be displayed on your servers screen at one time. Should be easy to change though. Mine is 8 so thats what the poject is configured to right now. 
 - Servers are not supported, should be easy to add.
 - Only display the amount of message that can fit on your screen at one time. Again, should not be too hard to make that better.
+- No images
+- Slow refresh time
 
 # Setup and Install
 
@@ -19,7 +21,7 @@ Prequisits
 2. Mess with the AutoIt scripts to change the x and y pos of the mouse to fit your screen size. Tip: the Autolt Window Info program shows your mouse coordinates.
 3. Run the webserver with python app.py
 4. Pray it runs
-5. Open <HostIP>:5000 on any browser in your local network (or outside if you have a server with a public IP or a router that can port forward), and tada!
+5. Open <HostIP>:5000 on any browser in your local network (or outside if you have a server with a public IP or a router that can port forward (also a funny way to leak your discord messages)), and tada!
 
 # Useage
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord</title>
+</head>
+<body>
+    <h2>Send to Discord</h2>
+    <form action="/save" method="post">
+        <textarea name="text_data" rows="10" cols="50" placeholder="Type your text here..."></textarea><br><br>
+        <label for="file_name">Enter the DM number (1-9):</label>
+        <input type="text" name="file_name" required><br><br>
+        <button type="submit">Send</button>
+    </form>
+
+    <h3>Last DM</h3>
+    {% if file_name %}
+    <p>{{ file_name }}</p>
+    {% else %}
+    <p>No message sent yet.</p>
+    {% endif %}
+    <a href="http://192.168.68.114:5000/recived_messages/1.txt">DM 1</a>
+    <a href="http://192.168.68.114:5000/recived_messages/2.txt">DM 2</a>
+    <a href="http://192.168.68.114:5000/recived_messages/3.txt">DM 3</a>
+    <a href="http://192.168.68.114:5000/recived_messages/4.txt">DM 4</a>
+    <a href="http://192.168.68.114:5000/recived_messages/5.txt">DM 5</a>
+    <a href="http://192.168.68.114:5000/recived_messages/6.txt">DM 6</a>
+    <a href="http://192.168.68.114:5000/recived_messages/7.txt">DM 7</a>
+    <a href="http://192.168.68.114:5000/recived_messages/8.txt">DM 8</a>
+    <br>
+    <button onclick="window.location.href='/refresh'">Refresh</button>
+</body>
+</body>
+</html>

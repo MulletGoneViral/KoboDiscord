@@ -27,7 +27,8 @@ Prequisits
 
 The first text box is messgage content, the seccond is the number your DM is from the top of the page (eg. your top most dm is 1, next is 2, ect...). Hit send to send your message. Refresh will update the .txt files on the server that contain your dm messages. IMPORTANT: Do not send messages while the server is refreshing, it generally screws stuff up. To veiw your DM's click on the link with the DM number you want. 
 
-![image](https://github.com/user-attachments/assets/d215fcae-77e1-4cb2-8dc9-fcdbf6532989)
+![image](https://github.com/user-attachments/assets/6785158e-7ce4-4c55-9ad1-917191991f30)
+
 
 # Notes
 

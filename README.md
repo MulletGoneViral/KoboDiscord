@@ -30,3 +30,5 @@ The first text box is messgage content, the seccond is the number your DM is fro
 # Notes
 
 AutoIt is a very powerfull automation tool so it would be very easy to expand this app. If you have a free afternoon any time soon, take a go at learning some AutoIt script and see what you can come up with. This entire tool so far was built in a coupple hours, so it won't take long.
+
+Oh yeah I also tested this for like 5 minutes so give me a heads up if it dies.

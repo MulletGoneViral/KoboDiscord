@@ -1,31 +1,32 @@
-#include <Array.au3>
-#include <File.au3>
+For $i = 1 To 8
+    ; Open Discord
+	Run("C:\Users\chris\AppData\Local\Discord\Update.exe --processStart Discord.exe") ; Change this path to where your Discord executable is located
+	Sleep(1000)
+	
+    ; Click at position (156, 297 + (50 * ($i - 1))) - Moves the click down to the next DM each iteration
+    MouseClick("left", 156, 297 + (50 * ($i - 1)))
+    Sleep(500) ; Adjust delay if necessary
 
-; Define the folder where the file is saved
-$folderPath = "C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord\saved_files"
+	; Drag the mouse from (841, 681) to (365, 89)
+	MouseClickDrag("left", 854, 689, 357, 100, 10) ; The 10 controls the speed of the drag, adjust if necessary
+	Sleep(500) ; Wait a bit then copy
+    Send("^c") ; Ctrl + C to copy
 
-; Get the name of the only file in the folder
-$fileList = _FileListToArray($folderPath, "*.txt", 1)
-If @error Then
-    MsgBox(0, "Error", "No file found in the folder.")
-    Exit
-EndIf
+    ; Open Notepad and paste
+    Run("notepad.exe")
+    WinWaitActive("[CLASS:Notepad]")
+    Send("^v")
+    Sleep(500)
 
-; Since there should be only one file, get the first file in the list
-$fileName = $fileList[1]
-$filePath = $folderPath & "\" & $fileName
+    ; Save the file <dm#>.txt
+    Send("^s")
+    WinWaitActive("Save as")
+	Send($i)
+	Sleep(500)
+    Send("{ENTER}")
+    Sleep(500)
+	
+    ; Close Notepad
+    Send("!{F4}")
 
-; Read the content of the file
-$fileContent = FileRead($filePath)
-
-; Open Discord (assuming it's already running, this will bring it to the front)
-    Run("C:\Users\chris\AppData\Local\Discord\Update.exe --processStart Discord.exe") 
-    Sleep(1000)
-
-; Click at a fixed position (e.g., 156, 297)
-MouseClick("left", 156, 297 + (50 * ($fileName - 1))) ; Adjust the position if needed
-Sleep(500)
-
-; Send the file content and press Enter
-Send($fileContent)
-Send("{ENTER}")
+Next

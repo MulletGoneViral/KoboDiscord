@@ -1,38 +1,27 @@
-For $i = 1 To 8
-    ; Open Discord
-	Run("C:\Users\chris\AppData\Local\Discord\Update.exe --processStart Discord.exe") ; Change this path to where your Discord executable is located
-	Sleep(1000)
-	
-    ; Click at position (156, 297 + (50 * ($i - 1))) - Moves the click down by 10 pixels each iteration
-    MouseClick("left", 156, 297 + (50 * ($i - 1)))
-    Sleep(500) ; Adjust delay if necessary
+#include <Array.au3>
+#include <File.au3>
 
-	; Drag the mouse from (841, 681) to (365, 89)
-	MouseClickDrag("left", 854, 689, 357, 100, 10) ; The 10 controls the speed of the drag, adjust if necessary
-	Sleep(500) ; Wait a bit after the drag operation
+$folderPath = "path\to\KoboDiscord\saved_files"
 
-    ; Copy the selected text to the clipboard
-    Send("^c") ; Ctrl + C to copy
+; Get DM number from filename
+$fileList = _FileListToArray($folderPath, "*.txt", 1)
+If @error Then
+    MsgBox(0, "Error", "No file found in the folder.")
+    Exit
+EndIf
 
-    ; Open Notepad
-    Run("notepad.exe")
-    WinWaitActive("[CLASS:Notepad]")
+$fileName = $fileList[1]
+$filePath = $folderPath & "\" & $fileName
+$text = FileRead($filePath)
 
-    ; Paste the text
-    Send("^v")
-    Sleep(500)
+; Open Discord
+    Run("C:\Users\%userprofile%\AppData\Local\Discord\Update.exe --processStart Discord.exe") 
+    Sleep(1000)
 
-    ; Save the file as an .txt file
-    Send("^s")
-    WinWaitActive("Save as")
-	Send($i)
-	Sleep(500)
-	
-    ; Press Enter to save
-    Send("{ENTER}")
-    Sleep(500)
-	
-    ; Close Notepad
-    Send("!{F4}")
+; Click DM
+MouseClick("left", 156, 297 + (50 * ($fileName - 1))) ; Adjust the position for your screen (autoIt window info can help)
+Sleep(500)
 
-Next
+; Send the text and press Enter
+Send($text)
+Send("{ENTER}")

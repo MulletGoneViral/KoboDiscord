@@ -13,8 +13,8 @@ if not os.path.exists(RECIVE_FOLDER):
     os.makedirs(RECIVE_FOLDER)
     
 # Define paths to the AutoIt scripts
-refresh = r"C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord\receiveMessages.au3"
-send = r"C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord\sendMessage.au3"
+refresh = r"C:\path\to\KoboDiscord\receiveMessages.au3"
+send = r"C:\path\to\KoboDiscord\sendMessage.au3"
 
 def run_autoit_script(script_path):
     """Run the AutoIt script using AutoIt executable."""
@@ -63,7 +63,7 @@ def save_file():
 
 @app.route('/<path:req_path>')
 def dir_listing(req_path):
-    BASE_DIR = r'C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord'
+    BASE_DIR = r'path\to\KoboDiscord'
     abs_path = os.path.join(BASE_DIR, req_path)
 
     # Render 404

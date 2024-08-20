@@ -74,7 +74,7 @@ def dir_listing(req_path):
     if os.path.isfile(abs_path):
         return send_file(abs_path)
 
-    # Show directory contents (currently dead)
+    # Show directory contents
     files = os.listdir(abs_path)
     return render_template('files.html', files=files)
 

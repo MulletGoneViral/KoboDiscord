@@ -13,8 +13,8 @@ if not os.path.exists(RECIVE_FOLDER):
     os.makedirs(RECIVE_FOLDER)
     
 # Define paths to the AutoIt scripts
-AUTOIT_SCRIPT_ON_START = r"C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord\receiveMessages.au3"
-AUTOIT_SCRIPT_ON_SAVE = r"C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord\sendMessage.au3"
+refresh = r"C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord\receiveMessages.au3"
+send = r"C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord\sendMessage.au3"
 
 def run_autoit_script(script_path):
     """Run the AutoIt script using AutoIt executable."""
@@ -36,7 +36,7 @@ def refresh():
             os.remove(file_path)
         else:
             print(f"File not found: {file_path}")
-    run_autoit_script(AUTOIT_SCRIPT_ON_START)
+    run_autoit_script(refresh)
     return redirect(url_for('index'))
 
 @app.route('/save', methods=['POST'])
@@ -56,19 +56,17 @@ def save_file():
     with open(file_path, "w") as file:
         file.write(text_data)
         
-    # Run AutoIt script when a file is saved
-    run_autoit_script(AUTOIT_SCRIPT_ON_SAVE)
+    # Run send script when a file is saved
+    run_autoit_script(send)
 
     return redirect(url_for('index'))
 
 @app.route('/<path:req_path>')
 def dir_listing(req_path):
     BASE_DIR = r'C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord'
-
-    # Joining the base and the requested path
     abs_path = os.path.join(BASE_DIR, req_path)
 
-    # Return 404 if path doesn't exist
+    # Render 404
     if not os.path.exists(abs_path):
         return render_template('404.html')
 
@@ -76,7 +74,7 @@ def dir_listing(req_path):
     if os.path.isfile(abs_path):
         return send_file(abs_path)
 
-    # Show directory contents
+    # Show directory contents (currently dead)
     files = os.listdir(abs_path)
     return render_template('files.html', files=files)
 

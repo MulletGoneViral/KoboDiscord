@@ -63,7 +63,7 @@ def save_file():
 
 @app.route('/<path:req_path>')
 def dir_listing(req_path):
-    BASE_DIR = r'C:\Users\chris\OneDrive\Documents\Config.json\ConnectionManager.xml\SoFTwAre\KoboDiscord'
+    BASE_DIR = r'C:\path\to\KoboDiscord'
 
     # Joining the base and the requested path
     abs_path = os.path.join(BASE_DIR, req_path)

@@ -1,6 +1,6 @@
 For $i = 1 To 8
     ; Open Discord
-	Run("C:\Users\chris\AppData\Local\Discord\Update.exe --processStart Discord.exe") ; Change this path to where your Discord executable is located
+	Run("C:\Users\%userprofile%\AppData\Local\Discord\Update.exe --processStart Discord.exe") ; Change this path to where your Discord executable is located
 	Sleep(1000)
 	
     ; Click at position (156, 297 + (50 * ($i - 1))) - Moves the click down to the next DM each iteration

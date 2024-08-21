@@ -15,23 +15,28 @@ A small webserver that reads and writes discord messages using Python Flask and 
 
 Prequisits
 - AutoIt: https://www.autoitscript.com/site/autoit/downloads/
-- Flask `pip install flask`
+- Flask: `pip install flask`
+- Notepad: download folder set to recived messages
 
 1. Download the .zip file from the relese page. 
 2. Mess with the AutoIt scripts to change the x and y pos of the mouse to fit your screen size. Tip: the Autolt Window Info program shows your mouse coordinates.
 3. Run the webserver with python app.py
 4. Pray it runs
-5. Open <HostIP>:5000 on any browser in your local network (or outside if you have a server with a public IP or a router that can port forward (also a funny way to leak your discord messages)), and tada!
+5. Open <HostIP>:5000 on any browser in your local network (please add some security if you want to make it accessible from the intenet), and tada!
 
 # Useage
 
-The first text box is messgage content, the seccond is the number your DM is from the top of the page (eg. your top most dm is 1, next is 2, ect...). Hit send to send your message. Refresh will update the .txt files on the server that contain your dm messages. IMPORTANT: Do not send messages while the server is refreshing, it generally screws stuff up. To veiw your DM's click on the link with the DM number you want. 
+Click on the DM you want, they are listed in the order they apear on discord. Type message, send message, obsesivily hit refresh until you get a reply (IMPORTANT: Wait until it refreshes before pressing the button again, or messaging). 
+
+Warning: if you text a DM that is not 1, that DM automaticaly becomes DM1, as it does on discord. It will not automatically change you to DM1, thats a feature for another day, so make sure you switch to DM1 before messaging again, otherwise you'll be messaging the wrong person.
+
+A full refresh refreshes all your DMs messages, not just the current one. This happens if there are no reccords in the recived_messages folder. Caution, it takes awhile and you cannot do anything else during that time otherwise sh!t starts breaking in all kinds of beutifull ways I could never envision.
 
 ![image](https://github.com/user-attachments/assets/6785158e-7ce4-4c55-9ad1-917191991f30)
 
 
 # Notes
 
-AutoIt is a very powerfull automation tool so it would be very easy to expand this app. If you have a free afternoon any time soon, take a go at learning some AutoIt script and see what you can come up with. This entire tool so far was built in a coupple hours, so it won't take long.
+AutoIt is a very powerfull automation tool so it would be very easy to expand this app. If you have a free afternoon any time soon, please go down the rabbit hole. It saves me a lot of time.
 
 Oh yeah I also tested this for like 5 minutes so give me a heads up if it dies.

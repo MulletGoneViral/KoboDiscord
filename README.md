@@ -16,7 +16,7 @@ A small webserver that reads and writes discord messages using Python Flask and 
 Prequisits
 - AutoIt: https://www.autoitscript.com/site/autoit/downloads/
 - Flask: `pip install flask`
-- Notepad: download folder set to recived messages
+- Notepad: download folder set to the recived_messages folder
 
 1. Download the .zip file from the relese page. 
 2. Mess with the AutoIt scripts to change the x and y pos of the mouse to fit your screen size. Tip: the Autolt Window Info program shows your mouse coordinates.
@@ -32,8 +32,7 @@ Warning: if you text a DM that is not 1, that DM automaticaly becomes DM1, as it
 
 A full refresh refreshes all your DMs messages, not just the current one. This happens if there are no reccords in the recived_messages folder. Caution, it takes awhile and you cannot do anything else during that time otherwise sh!t starts breaking in all kinds of beutifull ways I could never envision.
 
-![image](https://github.com/user-attachments/assets/6785158e-7ce4-4c55-9ad1-917191991f30)
-
+![image](https://github.com/user-attachments/assets/b61c740b-fab8-444e-bf34-31b2905025d7)
 
 # Notes
 

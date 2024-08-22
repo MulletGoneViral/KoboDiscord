@@ -1,5 +1,5 @@
 # KoboDiscord
-Discord for Kobo ereaders (with browser) or any device with a basic web browser really.
+A tiny Discord interface for Kobo ereaders (with browser) or any device with a basic web browser really.
 
 A small webserver that reads and writes discord messages using Python Flask and AutoIt. 
 

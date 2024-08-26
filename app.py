@@ -4,16 +4,33 @@ import subprocess
 
 app = Flask(__name__)
 
-# Define the folders and script paths, change to match your system
+# Define the folders and script paths
 SEND_FOLDER = os.path.join(os.getcwd(), "sent_messages")
 RECEIVE_FOLDER = os.path.join(os.getcwd(), "recived_messages")
-refresh_script = r"C:\\path\\to\\KoboDiscord\\receiveMessages.au3"
-send_script = r"C:\\path\\to\\KoboDiscord\\sendMessage.au3"
-full_refresh_script = r"C:\\path\\to\\KoboDiscord\\fullRefresh.au3"
+refresh_script = r"C:\\Users\\chris\\OneDrive\\Documents\\Config.json\\ConnectionManager.xml\\SoFTwAre\\KoboDiscord\\receiveMessages.au3"
+send_script = r"C:\\Users\\chris\\OneDrive\\Documents\\Config.json\\ConnectionManager.xml\\SoFTwAre\\KoboDiscord\\sendMessage.au3"
+full_refresh_script = r"C:\\Users\\chris\\OneDrive\\Documents\\Config.json\\ConnectionManager.xml\\SoFTwAre\\KoboDiscord\\fullRefresh.au3"
+script_running = False
 
-def run_autoit_script(script_path):
-    """Run the AutoIt script using AutoIt executable."""
-    subprocess.run(["C:\\Program Files (x86)\\AutoIt3\\AutoIt3.exe", script_path], check=True)
+def run_autoit_script(script_path, dm_number=None):
+    global script_running
+    
+    # Check if a script is already running
+    if script_running:
+        print("A script is already running. Please wait until it finishes.")
+        return
+
+    # Set the lock
+    script_running = True
+    try:
+        command = ["C:\\Program Files (x86)\\AutoIt3\\AutoIt3.exe", script_path]
+        if dm_number is not None:
+            command.append(str(dm_number))  # Pass the DM number as a string
+
+        subprocess.run(command, check=True)
+    finally:
+        # Release the lock once the script finishes
+        script_running = False
 
 @app.route('/')
 def index():
@@ -36,12 +53,13 @@ def index():
 @app.route('/refresh', methods=['POST'])
 def refresh():
     dm_number = request.args.get('dm', '1')
+    
     # Clear DM message file only
     file_path = os.path.join(RECEIVE_FOLDER, f"{dm_number}.txt")
     if os.path.exists(file_path):
         os.remove(file_path)
     # Run the refresh script when the refresh button is clicked
-    run_autoit_script(refresh_script)
+    run_autoit_script(refresh_script, dm_number)
     return redirect(url_for('index'))
 
 @app.route('/refresh-full', methods=['POST'])
@@ -56,34 +74,33 @@ def refreshFull():
     return redirect(url_for('index'))
 
 @app.route('/send', methods=['POST'])
+@app.route('/send', methods=['POST'])
+@app.route('/send', methods=['POST'])
 def send_message():
     # Get the message and the DM number from the form
     text_data = request.form['text_data']
     dm_number = request.form['dm_number']
-
-    # Delete previous message file
-    for i in range(1, 10):
+    print(dm_number)
+    # Clear DM message file and previous send files
+    file_path = os.path.join(RECEIVE_FOLDER, f"{dm_number}.txt")
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        
+    for i in range(9):
         file_path = os.path.join(SEND_FOLDER, f"{i}.txt")
         if os.path.exists(file_path):
             os.remove(file_path)
-            
+    
     # Save the message to the corresponding file
     file_path = os.path.join(SEND_FOLDER, f"{dm_number}.txt")
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(text_data)
 
-    # Run the send AutoIt script
-    run_autoit_script(send_script)
+    # Run the send AutoIt script with the current DM number
+    run_autoit_script(send_script)  # Pass the dm_number here
 
-    # Refresh, but only delete the current DM file
-    file_path = os.path.join(RECEIVE_FOLDER, f"{dm_number}.txt")
-    if os.path.exists(file_path):
-        os.remove(file_path)
-    # Remame the file to 1.txt because otherwise the refresh script refreshes the wrong dm
-    file_path = os.path.join(SEND_FOLDER, f"1.txt")
-    with open(file_path, 'w') as f:
-        f.write(text_data)
-    run_autoit_script(refresh_script)
+    # Run the refresh script to update received messages
+    run_autoit_script(refresh_script, 1)
 
     return redirect(url_for('index', dm=dm_number))
 

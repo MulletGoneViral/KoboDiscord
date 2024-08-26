@@ -30,7 +30,7 @@ Click on the DM you want, they are listed in the order they apear on discord. Ty
 
 Warning: if you text a DM that is not 1, that DM automaticaly becomes DM1, as it does on discord. It will not automatically change you to DM1, thats a feature for another day, so make sure you switch to DM1 before messaging again, otherwise you'll be messaging the wrong person.
 
-A full refresh refreshes all your DMs messages, not just the current one. This happens if there are no reccords in the recived_messages folder. Caution, it takes awhile and you cannot do anything else during that time otherwise sh!t starts breaking in all kinds of beutifull ways I could never envision.
+A full refresh refreshes all your DMs messages, not just the current one. This happens automaticallly if there are no reccords in the recived_messages folder.
 
 ![image](https://github.com/user-attachments/assets/b61c740b-fab8-444e-bf34-31b2905025d7)
 

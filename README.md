@@ -22,15 +22,15 @@ Prequisits
 2. Mess with the AutoIt scripts to change the x and y pos of the mouse to fit your screen size. Tip: the Autolt Window Info program shows your mouse coordinates.
 3. Run the webserver with python app.py
 4. Pray it runs
-5. Open <HostIP>:5000 on any browser in your local network (please add some security if you want to make it accessible from the intenet), and tada!
+5. Open HostIP:5000 on any browser in your local network, and tada!
 
 # Useage
 
 Click on the DM you want, they are listed in the order they apear on discord. Type message, send message, obsesivily hit refresh until you get a reply (IMPORTANT: Wait until it refreshes before pressing the button again, or messaging). 
 
-Warning: if you text a DM that is not 1, that DM automaticaly becomes DM1, as it does on discord. It will not automatically change you to DM1, thats a feature for another day, so make sure you switch to DM1 before messaging again, otherwise you'll be messaging the wrong person.
-
 A full refresh refreshes all your DMs messages, not just the current one. This happens automaticallly if there are no reccords in the recived_messages folder.
+
+Updating status is pretty self explaititory. Note that if your profile is displaying anything like listening to spotify or playing... it will click in the wrong place and your status wont update. 
 
 ![image](https://github.com/user-attachments/assets/b61c740b-fab8-444e-bf34-31b2905025d7)
 
